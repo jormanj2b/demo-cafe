@@ -66,7 +66,7 @@
         var add = el('button', { type: 'button', class: 'add', 'aria-label': 'Añadir ' + i.n + ' al pedido' }, [el('span', { 'aria-hidden': 'true', text: '+' })]);
         add.addEventListener('click', function () { cart[i.id] = (cart[i.id] || 0) + 1; qtyEl.textContent = '×' + cart[i.id]; updateBar(); });
         var kids = [];
-        if (i.img) kids.push(el('img', { class: 'thumb', src: 'img/' + i.img + '-400.webp', width: '400', height: i.img === 'hero' ? '225' : '400', alt: '', loading: 'lazy' }));
+        if (i.photo || i.img) kids.push(el('img', { class: 'thumb', src: i.photo || 'img/' + i.img + '-400.webp', width: '400', height: i.img === 'hero' ? '225' : '400', alt: '', loading: 'lazy' }));
         kids.push(el('div', { class: 'item-body' }, [
           el('div', { class: 'item-top' }, [el('h4', { text: i.n }), el('span', { class: 'price', text: eur(i.p) })]),
           el('p', { class: 'desc', text: i.t }),
@@ -74,7 +74,7 @@
           algs
         ]));
         kids.push(el('div', { class: 'item-act' }, [qtyEl, add]));
-        ul.appendChild(el('li', { class: 'item' + (i.img ? ' has-img' : '') }, kids));
+        ul.appendChild(el('li', { class: 'item' + (i.photo || i.img ? ' has-img' : '') }, kids));
       });
       sec.appendChild(ul); list.appendChild(sec);
     });

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel de Café Almendro · Demo de panel de administración</title>
+<meta name="description" content="Demo de panel para que un café cambie su carta, precios, horario y fotos sin depender del programador. Datos de ejemplo, se guardan solo en tu navegador.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://jormanj2b.github.io/demo-cafe/panel/">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#2B1D16">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../fonts/fraunces-normal-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="panel.css">
+</head>
+<body data-panel>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="demo-bar"><strong>Panel de demostración:</strong> sin usuarios ni contraseñas reales. Los cambios se guardan solo en este navegador. Hecho por <a href="https://jormanj2b.github.io/">Jorman Bravo · Desarrollo web</a></div>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="../">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c7 5 9 12 6 18-2 4-6 7-6 7s-4-3-6-7C7 15 9 8 16 3z" fill="#E08A6A"/><path d="M16 9v18" stroke="#2B1D16" stroke-width="1.6"/></svg>
+      <span>Café Almendro<small>Panel</small></span>
+    </a>
+    <nav class="side-nav" aria-label="Secciones del panel">
+      <a href="#resumen" aria-current="true">Resumen</a>
+      <a href="#carta">Carta y precios</a>
+      <a href="#horario">Horario y avisos</a>
+    </nav>
+    <div class="who"><span class="avatar" aria-hidden="true">LG</span><span>Lucía G.<small>Encargada · usuario de ejemplo</small></span></div>
+  </aside>
+  <main id="main" class="main">
+    <header class="head">
+      <div><p class="eyebrow">Martes · turno de mañana</p><h1>Buenos días, Lucía</h1></div>
+      <div class="head-actions">
+        <span class="state" id="state">Sin cambios</span>
+        <a class="btn btn-ghost" href="../" id="preview">Ver la carta</a>
+        <button class="btn" type="button" id="save">Guardar cambios</button>
+      </div>
+    </header>
+
+    <section id="resumen" class="block" aria-labelledby="h-res">
+      <h2 id="h-res" class="sr">Resumen</h2>
+      <ul class="kpis">
+        <li><span>Platos en carta</span><b id="k-items">0</b><small id="k-off"></small></li>
+        <li><span>Categorías</span><b id="k-cats">0</b></li>
+        <li><span>Precio medio</span><b id="k-avg">0</b></li>
+        <li><span>Con foto</span><b id="k-img">0</b></li>
+      </ul>
+      <p class="sample">Pedidos de hoy (datos de ejemplo): <b>23 pedidos</b> desde el QR · mesa más activa: <b>7</b> · plato más pedido: <b>Tostada con tomate</b></p>
+    </section>
+
+    <section id="carta" class="block" aria-labelledby="h-carta">
+      <div class="block-head">
+        <h2 id="h-carta">Carta y precios</h2>
+        <label class="search"><span class="sr">Buscar plato</span><input id="q" type="search" placeholder="Buscar plato…" autocomplete="off"></label>
+      </div>
+      <div id="cats"></div>
+      <form class="add-form" id="add-form" novalidate>
+        <h3>Añadir plato</h3>
+        <div class="add-grid">
+          <div class="f"><label for="n-name">Nombre</label><input id="n-name" maxlength="40" required></div>
+          <div class="f"><label for="n-price">Precio (€)</label><input id="n-price" inputmode="decimal" maxlength="6" required></div>
+          <div class="f"><label for="n-cat">Categoría</label><select id="n-cat"></select></div>
+          <div class="f f-wide"><label for="n-desc">Descripción</label><input id="n-desc" maxlength="90"></div>
+        </div>
+        <p class="error" id="n-err" hidden></p>
+        <button class="btn" type="submit">Añadir a la carta</button>
+      </form>
+    </section>
+
+    <section id="horario" class="block" aria-labelledby="h-hor">
+      <h2 id="h-hor">Horario y avisos</h2>
+      <div class="hours-grid" id="hours"></div>
+      <div class="f f-note"><label for="note">Aviso en la portada <span class="opt">(opcional)</span></label><input id="note" maxlength="80" placeholder="Por ejemplo: «Hoy cerramos a las 14:00 por inventario»"></div>
+      <p class="hint">El aviso aparece encima del título de la carta hasta que lo borres.</p>
+    </section>
+
+    <section class="block danger">
+      <h2>Restablecer la demo</h2>
+      <p>Vuelve a la carta, los precios y el horario de ejemplo. Borra lo guardado en este navegador.</p>
+      <button class="btn btn-line" type="button" id="reset">Restablecer datos de ejemplo</button>
+    </section>
+  </main>
+</div>
+<p class="toast" id="toast" role="status" hidden></p>
+<script src="../menu.js" defer></script>
+<script src="../store.js" defer></script>
+<script src="panel.js" defer></script>
+</body>
+</html>

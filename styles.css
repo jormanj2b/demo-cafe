@@ -191,3 +191,8 @@ h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.12
 img:not([src$=".svg"]){background-color:var(--paper-2)}
 @media (max-width:420px){.eyebrow{letter-spacing:.1em;font-size:.74rem}}
 .item-body{min-width:0}.item h4{overflow-wrap:anywhere}@media (max-width:380px){.item.has-img{grid-template-columns:72px 1fr auto;gap:.6rem}.thumb{width:72px;height:72px}}
+.edited-bar{background:var(--olive);color:#F3F0E2;font-size:.92rem;display:flex;flex-wrap:wrap;gap:.4rem 1rem;align-items:center;justify-content:center;padding:.6rem 1rem;text-align:center}
+.edited-bar a{color:#fff;font-weight:700}
+.edited-bar button{background:none;border:1.5px solid #F3F0E2;color:#F3F0E2;border-radius:999px;padding:.3rem .8rem;font:700 .85rem var(--sans);cursor:pointer;min-height:36px}
+.notice{display:inline-block;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--terra);padding:.5rem .9rem;border-radius:8px;font-weight:700;color:var(--ink)!important}
+.qr-actions{display:flex;flex-wrap:wrap;gap:.8rem}

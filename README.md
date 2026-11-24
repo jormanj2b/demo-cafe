@@ -19,3 +19,7 @@ Café Almendro es un negocio **ficticio**. Este repositorio es una pieza de port
 GitHub Pages desde la rama `main`. Para un cliente real se conecta su dominio, se cambian los datos de ejemplo y se añade el número de WhatsApp o el servicio de formularios que use el negocio.
 
 © 2026 Jorman Bravo. Código de muestra para portafolio.
+
+## Panel de demostración
+
+`panel/` es un panel de administración de ejemplo: cambia nombres, precios, descripciones, fotos, disponibilidad, horario y un aviso de portada. No hay cuentas ni servidor: los cambios se guardan en `localStorage` (clave `almendro-demo-v1`) y la carta los aplica al abrirla en el mismo navegador (`store.js`). En un encargo real se conecta a una base de datos con acceso por usuario.
