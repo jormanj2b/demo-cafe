@@ -2,6 +2,19 @@
 (function () {
   var S = window.CAFE_STORE, A = window.ALLERGENS, D = S.data(), dirty = false;
   function $(id) { return document.getElementById(id); }
+  // Textos del panel: sin < > ni caracteres de control. Se muestran siempre como texto (textContent), nunca como HTML.
+  function clean(v) { return String(v || '').normalize('NFC').replace(/[\u0000-\u001F\u007F-\u009F\u200B-\u200F\u2028\u2029\uFEFF]/g, ' ').replace(/\s+/g, ' ').trim(); }
+  function guard(input, set) {
+    input.addEventListener('input', function () {
+      if (/[<>]/.test(input.value)) { input.value = input.value.replace(/[<>]/g, ''); toast('Los signos < y > no están permitidos.'); }
+      input.setAttribute('aria-invalid', 'false');
+      set(clean(input.value)); mark();
+    });
+  }
+  function photoSrc(i) {
+    if (typeof i.photo === 'string' && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+\/=]+$/.test(i.photo)) return i.photo;
+    return typeof i.img === 'string' && /^[a-z0-9-]+$/.test(i.img) ? '../img/' + i.img + '-400.webp' : '';
+  }
   function el(tag, attrs, kids) {
     var n = document.createElement(tag);
     if (attrs) Object.keys(attrs).forEach(function (k) {
@@ -46,7 +59,7 @@
     var thumb = el('div', { class: 'thumb' });
     function paintThumb() {
       thumb.textContent = '';
-      var src = i.photo || (i.img ? '../img/' + i.img + '-400.webp' : '');
+      var src = photoSrc(i);
       if (src) thumb.appendChild(el('img', { src: src, alt: '', width: '64', height: '64' }));
       else thumb.appendChild(el('span', { 'aria-hidden': 'true', text: i.n.slice(0, 1) }));
     }
@@ -57,11 +70,12 @@
       readPhoto(file.files[0], function (d) { i.photo = d; paintThumb(); mark(); toast('Foto lista. Guarda para verla en la carta.'); });
     });
     var name = el('input', { id: id + '-n', value: i.n, maxlength: '40', class: 'in-name' });
-    name.addEventListener('input', function () { i.n = name.value; mark(); });
+    guard(name, function (v) { i.n = v; });
     var desc = el('input', { id: id + '-d', value: i.t || '', maxlength: '90', class: 'in-desc', 'aria-label': 'Descripción de ' + i.n });
-    desc.addEventListener('input', function () { i.t = desc.value; mark(); });
+    guard(desc, function (v) { i.t = v; });
     var price = el('input', { id: id + '-p', value: i.p.toFixed(2).replace('.', ','), inputmode: 'decimal', maxlength: '6', class: 'in-price' });
     price.addEventListener('input', function () {
+      if (/[^\d.,]/.test(price.value)) { price.value = price.value.replace(/[^\d.,]/g, ''); toast('El precio solo acepta números y una coma.'); }
       var v = num(price.value), ok = v > 0 && v < 1000;
       price.setAttribute('aria-invalid', String(!ok)); if (ok) { i.p = v; mark(); }
     });
@@ -95,32 +109,33 @@
     var hb = $('hours'); hb.textContent = '';
     D.hours.forEach(function (h, k) {
       var d = el('input', { id: 'hd' + k, value: h.d, maxlength: '20' }), t = el('input', { id: 'ht' + k, value: h.h, maxlength: '20' });
-      d.addEventListener('input', function () { h.d = d.value; mark(); });
-      t.addEventListener('input', function () { h.h = t.value; mark(); });
+      guard(d, function (v) { h.d = v; }); guard(t, function (v) { h.h = v; });
       hb.appendChild(el('div', { class: 'hour' }, [el('div', { class: 'f' }, [el('label', { for: 'hd' + k, text: 'Días' }), d]), el('div', { class: 'f' }, [el('label', { for: 'ht' + k, text: 'Horario' }), t])]));
     });
     $('note').value = D.note || '';
     kpis();
   }
 
-  $('note').addEventListener('input', function () { D.note = $('note').value.trim(); mark(); });
+  guard($('note'), function (v) { D.note = v; });
   $('q').addEventListener('input', function () {
     var q = $('q').value.trim().toLowerCase();
     Array.prototype.forEach.call(document.querySelectorAll('.row'), function (r) { r.hidden = q && r.dataset.q.indexOf(q) < 0; });
   });
+  ['n-name', 'n-desc'].forEach(function (id) { $(id).addEventListener('input', function () { var v = $(id).value; if (/[<>]/.test(v)) { $(id).value = v.replace(/[<>]/g, ''); toast('Los signos < y > no están permitidos.'); } }); });
+  $('n-price').addEventListener('input', function () { var v = $('n-price').value; if (/[^\d.,]/.test(v)) { $('n-price').value = v.replace(/[^\d.,]/g, ''); toast('El precio solo acepta números y una coma.'); } });
   $('add-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    var n = $('n-name').value.trim(), p = num($('n-price').value), err = $('n-err');
-    var msg = n.length < 2 ? 'Escribe el nombre del plato.' : !(p > 0 && p < 1000) ? 'Escribe un precio válido, por ejemplo 3,50.' : '';
+    var n = clean($('n-name').value), p = num($('n-price').value), err = $('n-err'), ds = clean($('n-desc').value);
+    var msg = /[<>]/.test(n + ds) ? 'Sin los signos < y >, por favor.' : n.length < 2 ? 'Escribe el nombre del plato.' : !(p > 0 && p < 1000) ? 'Escribe un precio válido, por ejemplo 3,50.' : '';
     err.textContent = msg; err.hidden = !msg;
-    if (msg) { (n.length < 2 ? $('n-name') : $('n-price')).focus(); return; }
+    if (msg) { (/[<>]/.test(ds) && !/[<>]/.test(n) ? $('n-desc') : n.length < 2 || /[<>]/.test(n) ? $('n-name') : $('n-price')).focus(); return; }
     var cat = D.menu.filter(function (c) { return c.cat === $('n-cat').value; })[0];
-    cat.items.push({ id: 'n' + Date.now().toString(36), n: n, p: p, a: [], d: [], t: $('n-desc').value.trim() });
+    cat.items.push({ id: 'n' + Date.now().toString(36), n: n, p: p, a: [], d: [], t: ds });
     e.target.reset(); render(); mark(); toast('«' + n + '» añadido en ' + cat.cat + '.');
   });
   $('save').addEventListener('click', function () {
-    var bad = document.querySelector('.in-price[aria-invalid="true"]');
-    if (bad) { bad.focus(); toast('Hay un precio que no es válido.'); return; }
+    var bad = document.querySelector('input[aria-invalid="true"]');
+    if (bad) { bad.focus(); toast(bad.classList.contains('in-price') ? 'Hay un precio que no es válido.' : 'Hay un texto con signos < o >. Quítalos para guardar.'); return; }
     try { S.save(D); } catch (e) { toast('No hay espacio en el navegador. Prueba con fotos más pequeñas.'); return; }
     dirty = false; $('state').textContent = 'Guardado en este navegador'; $('state').className = 'state ok';
     toast('Guardado. Abre la carta para ver los cambios.');
