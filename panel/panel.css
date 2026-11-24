@@ -121,3 +121,7 @@ input[type=file]:focus-visible{outline:none}
 
 /* La carta se pinta con JS: se reserva su alto para que el formulario de abajo no salte (CLS) */
 #cats:empty{min-height:100vh}
+/* ronda 2 (modo Operar): etiquetas a 12 px y campos de 44 px */
+.brand small,.photo-t,.mini{font-size:.75rem}
+.in-desc{min-height:44px}
+.skip{display:inline-flex;align-items:center;min-height:44px}

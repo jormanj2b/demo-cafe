@@ -196,3 +196,9 @@ img:not([src$=".svg"]){background-color:var(--paper-2)}
 .edited-bar button{background:none;border:1.5px solid #F3F0E2;color:#F3F0E2;border-radius:999px;padding:.3rem .8rem;font:700 .85rem var(--sans);cursor:pointer;min-height:36px}
 .notice{display:inline-block;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--terra);padding:.5rem .9rem;border-radius:8px;font-weight:700;color:var(--ink)!important}
 .qr-actions{display:flex;flex-wrap:wrap;gap:.8rem}
+/* ronda 2: la portada ocupa la primera pantalla completa y la carta empieza debajo */
+@media (min-width:900px) and (min-height:760px){.intro{min-height:calc(100svh - 91px)}}
+/* ronda 2: chips y filtros de 44 px, alérgenos a 12 px */
+.chip,.allergen-filter summary,.alg-opt{min-height:44px}
+.alg{font-size:.75rem;height:24px}
+.skip{display:inline-flex;align-items:center;min-height:44px}
