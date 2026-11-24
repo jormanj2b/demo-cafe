@@ -118,3 +118,6 @@ input[type=file]:focus-visible{outline:none}
   .toast{bottom:130px}
   .main{padding-bottom:9rem}
 }
+
+/* La carta se pinta con JS: se reserva su alto para que el formulario de abajo no salte (CLS) */
+#cats:empty{min-height:100vh}
