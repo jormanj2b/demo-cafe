@@ -110,3 +110,6 @@ input:focus{outline:none;border-color:var(--terra);box-shadow:0 0 0 3px rgba(169
 .qr-card small{color:var(--muted)}
 @media print{.demo-bar,.top,.foot,.noprint{display:none}.qr-card{break-inside:avoid}}
 [tabindex="-1"]:focus{outline:none}
+
+/* img-placeholder */
+img:not([src$=".svg"]){background-color:var(--paper-2)}
