@@ -1,7 +1,7 @@
 'use strict';
 /* Datos de la demo del panel. Todo vive en localStorage de este navegador: no hay servidor ni cuentas. */
 (function () {
-  var KEY = 'almendro-demo-v1';
+  var KEY = 'almendro-demo-v2';
   var BASE_HOURS = [{ d: 'Lun–Vie', h: '8:00–16:00' }, { d: 'Sáb–Dom', h: '9:00–15:00' }];
   function clone(o) { return JSON.parse(JSON.stringify(o)); }
   function load() {
