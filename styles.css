@@ -1,8 +1,10 @@
+/* Café Almendro — carta de papel sevillana: terracota, oliva y arcos de cal */
 :root{
   --paper:#F6EFE3; --paper-2:#EFE4D2; --card:#FFFBF4; --terra:#A9472A; --terra-dark:#86351E; --olive:#4F5A2E;
   --ink:#2B1D16; --muted:#6A5446; --line:#DCCDB6;
-  --serif:'Fraunces', Georgia, serif; --sans:'Karla', system-ui, sans-serif; --r:14px;
+  --serif:'Fraunces', Georgia, serif; --sans:'Karla', system-ui, sans-serif; --r:14px; --ease:cubic-bezier(.2,.7,.2,1);
 }
+[hidden]{display:none!important}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:140px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -111,5 +113,81 @@ input:focus{outline:none;border-color:var(--terra);box-shadow:0 0 0 3px rgba(169
 @media print{.demo-bar,.top,.foot,.noprint{display:none}.qr-card{break-inside:avoid}}
 [tabindex="-1"]:focus{outline:none}
 
+/* ===== Rediseño ===== */
+body{-webkit-font-smoothing:antialiased}
+.top{position:relative}
+.logo{font-size:1.5rem}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;margin:0 0 1rem;font-weight:700;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--olive)}
+.eyebrow::before{content:"";width:28px;height:2px;background:currentColor}
+h1{font-size:clamp(2.5rem,7.5vw,4.6rem);line-height:1.02;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--terra);position:relative;white-space:nowrap}
+h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.12em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5c20-4 40-4 60-1s30 2 38-1' fill='none' stroke='%23A9472A' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+.intro{padding:1.4rem 20px 3rem;gap:2.2rem}
+.intro-text p{font-size:1.08rem}
+.hours{margin-bottom:1.6rem!important}
+.hours span{display:inline-flex;align-items:center;gap:.45rem}
+.hours span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--olive)}
+.btn-go{justify-content:center}
+.btn-go span{transition:transform .25s var(--ease)}
+.btn-go:hover span{transform:translateY(3px)}
+.btn{transition:background .2s,transform .2s var(--ease),box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 22px -12px rgba(134,53,30,.6)}
+.intro-fig{margin:0;position:relative;padding:0 0 0 0}
+.intro-img{border-radius:999px 999px var(--r) var(--r);aspect-ratio:4/5;object-position:50% 60%;box-shadow:0 0 0 8px var(--paper),0 0 0 9px var(--line)}
+.badge{position:absolute;left:-8px;bottom:22px;width:118px;height:118px;border-radius:50%;background:var(--olive);color:#F3F0E2;display:grid;place-items:center}
+.badge svg{position:absolute;inset:0;width:100%;height:100%}
+.badge text{font:700 9.4px var(--sans);letter-spacing:.2em;text-transform:uppercase;fill:#F3F0E2}
+.badge span{font:600 1rem/1.05 var(--serif);text-align:center}
+@media (prefers-reduced-motion:no-preference){.badge svg{animation:spin 30s linear infinite}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:899px){.intro-img{aspect-ratio:5/4;border-radius:220px 220px var(--r) var(--r)}.intro-fig{margin:0 6px}.badge{width:96px;height:96px;left:-4px;bottom:-14px}.badge text{font-size:9px}}
+@media (min-width:900px){.intro{grid-template-columns:1.1fr .9fr;gap:4rem;padding:2.4rem 20px 4.5rem}.intro-fig{max-width:460px;justify-self:end;width:100%}}
+/* carta */
+.menu{padding-top:1rem}
+.menu-head{background:rgba(246,239,227,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:1rem}
+.menu-head h2{font-size:clamp(2.2rem,6vw,3rem);display:flex;align-items:baseline;gap:.8rem}
+.menu-head h2::after{content:"de la casa";font:italic 400 1rem var(--sans);color:var(--muted);letter-spacing:0}
+.cats a{background:transparent;border:1.5px solid var(--line);transition:background .2s,color .2s,border-color .2s}
+.cats a:hover{background:var(--terra);border-color:var(--terra);color:#fff}
+.chip,.allergen-filter summary{transition:background .2s,color .2s}
+.chip:hover{background:rgba(79,90,46,.1)}
+.chip[aria-pressed="true"]::before{content:"✓ "}
+.cat{padding-top:2.6rem}
+.cat h3{font-size:clamp(1.8rem,4vw,2.3rem);border-bottom:0;padding-bottom:.6rem;display:flex;align-items:center;gap:1rem}
+.cat h3::after{content:"";flex:1;height:0;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);padding-top:3px}
+.item{padding:1.2rem 0;border-bottom:1px dashed var(--line);transition:background .2s}
+.item.has-img{grid-template-columns:92px 1fr auto}
+.thumb{width:92px;height:92px;border-radius:46px 46px 10px 10px;transition:transform .4s var(--ease)}
+.item:hover .thumb{transform:scale(1.04) rotate(-1.5deg)}
+.item-top{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:.5rem}
+.item-top::after{content:"";grid-column:2;grid-row:1;border-bottom:2px dotted #C8B79D;transform:translateY(-.3em)}
+.item h4{grid-column:1;grid-row:1;font-size:1.2rem}
+.price{grid-column:3;grid-row:1;font:600 1.15rem var(--serif);color:var(--terra-dark)}
+.add{box-shadow:0 6px 14px -8px rgba(134,53,30,.8);transition:transform .15s,background .2s}
+.add:hover{transform:rotate(90deg)}
+.add:active{transform:scale(.9)}
+.legend-note{padding-top:2rem}
+/* banda QR */
+.qr-band{background:var(--olive);position:relative;overflow:hidden}
+.qr-band::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20px 20px,rgba(243,240,226,.08) 2px,transparent 2.5px) 0 0/40px 40px}
+.qr-inner{position:relative;padding:clamp(3.5rem,8vw,5rem) 20px}
+.qr-inner h2{font-size:clamp(2rem,5vw,3rem)}
+.qr-inner img{transform:rotate(-4deg);box-shadow:0 18px 30px -16px rgba(0,0,0,.5);transition:transform .4s var(--ease)}
+.qr-inner:hover img{transform:rotate(0)}
+/* hoja de pedido */
+.sheet[open]{animation:up .3s var(--ease)}
+@keyframes up{from{transform:translateY(30px);opacity:0}}
+.sheet-head h2{font-size:1.8rem}
+.total-line strong{font:600 1.5rem var(--serif);color:var(--terra-dark)}
+.foot{background:var(--ink);color:#E0D2BE;border:0}
+.foot a{color:#fff}
+.qr-card{transition:transform .25s var(--ease)}
+.qr-card:hover{transform:translateY(-3px)}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
 /* img-placeholder */
 img:not([src$=".svg"]){background-color:var(--paper-2)}
+@media (max-width:420px){.eyebrow{letter-spacing:.1em;font-size:.74rem}}
+.item-body{min-width:0}.item h4{overflow-wrap:anywhere}@media (max-width:380px){.item.has-img{grid-template-columns:72px 1fr auto;gap:.6rem}.thumb{width:72px;height:72px}}

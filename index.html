@@ -24,7 +24,7 @@
 {"@context":"https://schema.org","@type":"CafeOrCoffeeShop","name":"Café Almendro","description":"Desayunos, brunch y café de especialidad en Sevilla. Negocio ficticio de demostración.","url":"https://jormanj2b.github.io/demo-cafe/","image":"https://jormanj2b.github.io/demo-cafe/img/og.jpg","servesCuisine":["Desayunos","Brunch","Café de especialidad"],"priceRange":"2 € – 11 €","acceptsReservations":"False","hasMenu":"https://jormanj2b.github.io/demo-cafe/#carta","address":{"@type":"PostalAddress","streetAddress":"Calle de ejemplo, 00","addressLocality":"Sevilla","postalCode":"41004","addressCountry":"ES"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"16:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"09:00","closes":"15:00"}]}
 </script>
 </head>
-<body>
+<body data-reveal=".qr-inner, .legend-note">
 <a class="skip" href="#carta">Saltar a la carta</a>
 <div class="demo-bar">Demo de portafolio: negocio ficticio. Hecho por <a href="https://jormanj2b.github.io/">Jorman Bravo · Desarrollo web</a></div>
 <header class="top">
@@ -38,11 +38,16 @@
 <main>
 <section class="intro">
   <div class="intro-text">
-    <h1>Desayunos y café de especialidad, a dos calles de la Alameda.</h1>
+    <p class="eyebrow">Alameda de Hércules · Sevilla</p>
+    <h1>Desayunos y café de especialidad, a <em>dos calles</em> de la Alameda.</h1>
     <p>Pan de masa madre de un obrador del barrio, café tostado en Sevilla y fruta de temporada. Abrimos todos los días.</p>
     <p class="hours"><span>Lun–Vie 8:00–16:00</span><span>Sáb–Dom 9:00–15:00</span></p>
+    <a class="btn btn-go" href="#carta">Ver la carta <span aria-hidden="true">↓</span></a>
   </div>
-  <img class="intro-img" src="img/hero-800.webp" srcset="img/hero-400.webp 400w, img/hero-800.webp 800w, img/hero-1600.webp 1600w" sizes="(min-width: 900px) 50vw, 100vw" width="1600" height="900" alt="Tostada con tomate y aceite y un café con leche en vaso sobre mesa de mármol" fetchpriority="high">
+  <figure class="intro-fig">
+    <img class="intro-img" src="img/hero-800.webp" srcset="img/hero-400.webp 400w, img/hero-800.webp 800w, img/hero-1600.webp 1600w" sizes="(min-width: 900px) 50vw, 100vw" width="1600" height="900" alt="Tostada con tomate y aceite y un café con leche en vaso sobre mesa de mármol" fetchpriority="high">
+    <figcaption class="badge" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="bc" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs><text><textPath href="#bc">masa madre · tueste en Sevilla · </textPath></text></svg><span>Desde<br>2017</span></figcaption>
+  </figure>
 </section>
 
 <section id="carta" class="menu" aria-labelledby="carta-title">
@@ -122,5 +127,6 @@
 </footer>
 <script src="menu.js" defer></script>
 <script src="app.js" defer></script>
+<script src="reveal.js" defer></script>
 </body>
 </html>
