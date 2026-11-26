@@ -2,9 +2,9 @@
 
 Carta digital con QR por mesa, filtros de dieta y alérgenos (UE 1169/2011) y pedido por WhatsApp.
 
-**Sitio en vivo:** https://jormanj2b.github.io/demo-cafe/
+**Sitio en vivo:** https://jormanbravo.com/demo-cafe/
 
-Café Almendro es un negocio **ficticio**. Este repositorio es una pieza de portafolio de **Jorman Bravo · Desarrollo web** ([portafolio](https://jormanj2b.github.io/)), no el sitio de una empresa real. Las direcciones, personas, precios y testimonios son de ejemplo, y las fotos están generadas para la demo.
+Café Almendro es un negocio **ficticio**. Este repositorio es una pieza de portafolio de **Jorman Bravo · Desarrollo web** ([portafolio](https://jormanbravo.com/)), no el sitio de una empresa real. Las direcciones, personas, precios y testimonios son de ejemplo, y las fotos están generadas para la demo.
 
 ## Qué incluye
 
@@ -28,4 +28,4 @@ GitHub Pages desde la rama `main`. Para un cliente real se conecta su dominio, s
 
 `en/` is a native English version for US clients (Almond Tree Café, Austin, TX): prices in $, 12-hour hours, FDA major allergens, English cookie notice, form messages, printable QR cards (`en/img/qr-table-N.svg`) and dashboard (`en/panel/`). It reuses the root CSS, fonts and photos. Both versions have an ES/EN switch in the top bar.
 
-**Live:** https://jormanj2b.github.io/demo-cafe/en/
+**Live:** https://jormanbravo.com/demo-cafe/en/
