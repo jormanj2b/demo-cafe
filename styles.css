@@ -202,3 +202,8 @@ img:not([src$=".svg"]){background-color:var(--paper-2)}
 .chip,.allergen-filter summary,.alg-opt{min-height:44px}
 .alg{font-size:.75rem;height:24px}
 .skip{display:inline-flex;align-items:center;min-height:44px}
+
+/* ES/EN */
+.lang-switch{display:inline-block;margin-left:.6rem;padding:.15rem .7rem;border:1px solid currentColor;border-radius:999px;font-weight:600;text-decoration:none;line-height:1.5}
+.lang-switch:hover{text-decoration:underline}
+html[lang="en"] .menu-head h2::after{content:"made in house"}

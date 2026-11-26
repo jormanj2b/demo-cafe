@@ -23,3 +23,9 @@ GitHub Pages desde la rama `main`. Para un cliente real se conecta su dominio, s
 ## Panel de demostración
 
 `panel/` es un panel de administración de ejemplo: cambia nombres, precios, descripciones, fotos, disponibilidad, horario y un aviso de portada. No hay cuentas ni servidor: los cambios se guardan en `localStorage` (clave `almendro-demo-v1`) y la carta los aplica al abrirla en el mismo navegador (`store.js`). En un encargo real se conecta a una base de datos con acceso por usuario.
+
+## English version
+
+`en/` is a native English version for US clients (Almond Tree Café, Austin, TX): prices in $, 12-hour hours, FDA major allergens, English cookie notice, form messages, printable QR cards (`en/img/qr-table-N.svg`) and dashboard (`en/panel/`). It reuses the root CSS, fonts and photos. Both versions have an ES/EN switch in the top bar.
+
+**Live:** https://jormanj2b.github.io/demo-cafe/en/

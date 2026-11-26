@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Almond Tree Café dashboard · Admin panel demo</title>
+<meta name="description" content="Demo dashboard where a café updates its menu, prices, hours and photos without calling a developer. Sample data, saved only in your browser.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://jormanj2b.github.io/demo-cafe/en/panel/">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob: https://jormanj2b.goatcounter.com; style-src 'self'; script-src 'self' https://gc.zgo.at; font-src 'self'; connect-src 'self' https://jormanj2b.goatcounter.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#2B1D16">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../fonts/fraunces-normal-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../fonts/karla-normal-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../fonts.css">
+<link rel="stylesheet" href="../../panel/panel.css?v=3">
+<link rel="stylesheet" href="../../cookies.css?v=1">
+<script src="../cookies.js?v=1" defer data-key="demo-cafe" data-owner="Almond Tree Café" data-accent="#A9472A"></script>
+</head>
+<body data-panel>
+<a class="skip" href="#main">Skip to content</a>
+<div class="demo-bar"><strong>Demo dashboard:</strong> no real users or passwords. Changes are saved only in this browser. Built by <a href="https://jormanj2b.github.io/">Jorman Bravo · Web design</a> <a class="lang-switch" href="../../panel/" hreflang="es" lang="es">Español</a></div>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="../">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c7 5 9 12 6 18-2 4-6 7-6 7s-4-3-6-7C7 15 9 8 16 3z" fill="#E08A6A"/><path d="M16 9v18" stroke="#2B1D16" stroke-width="1.6"/></svg>
+      <span>Almond Tree Café<small>Dashboard</small></span>
+    </a>
+    <nav class="side-nav" aria-label="Dashboard sections">
+      <a href="#resumen" aria-current="true">Overview</a>
+      <a href="#carta">Menu &amp; prices</a>
+      <a href="#horario">Hours &amp; notices</a>
+    </nav>
+    <div class="who"><span class="avatar" aria-hidden="true">LG</span><span>Laura G.<small>Manager · sample user</small></span></div>
+  </aside>
+  <main id="main" class="main">
+    <header class="head">
+      <div><p class="eyebrow">Tuesday · morning shift</p><h1>Good morning, Laura</h1></div>
+      <div class="head-actions">
+        <span class="state" id="state">No changes</span>
+        <a class="btn btn-ghost" href="../" id="preview">View the menu</a>
+        <button class="btn" type="button" id="save">Save changes</button>
+      </div>
+    </header>
+
+    <section id="resumen" class="block" aria-labelledby="h-res">
+      <h2 id="h-res" class="sr">Overview</h2>
+      <ul class="kpis">
+        <li><span>Items on the menu</span><b id="k-items">0</b><small id="k-off"></small></li>
+        <li><span>Categories</span><b id="k-cats">0</b></li>
+        <li><span>Average price</span><b id="k-avg">0</b></li>
+        <li><span>With a photo</span><b id="k-img">0</b></li>
+      </ul>
+      <p class="sample">Today’s orders (sample data): <b>23 orders</b> by QR · busiest table: <b>7</b> · top item: <b>Tomato toast</b></p>
+    </section>
+
+    <section id="carta" class="block" aria-labelledby="h-carta">
+      <div class="block-head">
+        <h2 id="h-carta">Menu &amp; prices</h2>
+        <label class="search"><span class="sr">Search items</span><input id="q" type="search" placeholder="Search items…" autocomplete="off"></label>
+      </div>
+      <div id="cats"></div>
+      <form class="add-form" id="add-form" novalidate>
+        <h3>Add an item</h3>
+        <div class="add-grid">
+          <div class="f"><label for="n-name">Name</label><input id="n-name" maxlength="40" required></div>
+          <div class="f"><label for="n-price">Price ($)</label><input id="n-price" inputmode="decimal" maxlength="6" required></div>
+          <div class="f"><label for="n-cat">Category</label><select id="n-cat"></select></div>
+          <div class="f f-wide"><label for="n-desc">Description</label><input id="n-desc" maxlength="90"></div>
+        </div>
+        <p class="error" id="n-err" hidden></p>
+        <button class="btn" type="submit">Add to the menu</button>
+      </form>
+    </section>
+
+    <section id="horario" class="block" aria-labelledby="h-hor">
+      <h2 id="h-hor">Hours &amp; notices</h2>
+      <div class="hours-grid" id="hours"></div>
+      <div class="f f-note"><label for="note">Homepage notice <span class="opt">(optional)</span></label><input id="note" maxlength="80" placeholder="For example: “Closing at 2 PM today for inventory”"></div>
+      <p class="hint">The notice shows above the menu headline until you delete it.</p>
+    </section>
+
+    <section class="block danger">
+      <h2>Reset the demo</h2>
+      <p>Goes back to the sample menu, prices and hours, and clears what’s saved in this browser.</p>
+      <button class="btn btn-line" type="button" id="reset">Reset sample data</button>
+    </section>
+  </main>
+</div>
+<p class="toast" id="toast" role="status" hidden></p>
+<script src="../menu.js" defer></script>
+<script src="../store.js" defer></script>
+<script src="panel.js" defer></script>
+<script data-goatcounter="https://jormanj2b.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Almond Tree Café · Online menu with allergen filters · Austin, TX</title>
+<meta name="description" content="Almond Tree Café menu: breakfast, brunch and specialty coffee in Austin, TX. Filter by allergens and order from your table. Portfolio demo.">
+<link rel="canonical" href="https://jormanj2b.github.io/demo-cafe/en/">
+<link rel="alternate" hreflang="en" href="https://jormanj2b.github.io/demo-cafe/en/">
+<link rel="alternate" hreflang="es" href="https://jormanj2b.github.io/demo-cafe/">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://jormanj2b.goatcounter.com; style-src 'self'; script-src 'self' https://gc.zgo.at; font-src 'self'; connect-src 'self' https://jormanj2b.goatcounter.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#F6EFE3">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Almond Tree Café · Online menu">
+<meta property="og:description" content="Breakfast, brunch and specialty coffee. Filter by allergens and order from your table.">
+<meta property="og:url" content="https://jormanj2b.github.io/demo-cafe/en/">
+<meta property="og:image" content="https://jormanj2b.github.io/demo-cafe/img/og.jpg">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../fonts/fraunces-normal-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../styles.css?v=2">
+<link rel="stylesheet" href="../cookies.css?v=1">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CafeOrCoffeeShop","name":"Almond Tree Café","description":"Breakfast, brunch and specialty coffee in Austin, TX. Fictional demo business.","url":"https://jormanj2b.github.io/demo-cafe/en/","image":"https://jormanj2b.github.io/demo-cafe/img/og.jpg","servesCuisine":["Breakfast","Brunch","Specialty coffee"],"priceRange":"$3–$16","acceptsReservations":"False","hasMenu":"https://jormanj2b.github.io/demo-cafe/en/#menu","address":{"@type":"PostalAddress","streetAddress":"123 Example St","addressLocality":"Austin","addressRegion":"TX","postalCode":"78704","addressCountry":"US"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"16:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"09:00","closes":"15:00"}]}
+</script>
+<script src="cookies.js?v=1" defer data-key="demo-cafe" data-owner="Almond Tree Café" data-accent="#A9472A"></script>
+</head>
+<body data-reveal=".qr-inner, .legend-note">
+<a class="skip" href="#menu">Skip to the menu</a>
+<div class="demo-bar">Portfolio demo: fictional business. Built by <a href="https://jormanj2b.github.io/">Jorman Bravo · Web design</a> <a class="lang-switch" href="../" hreflang="es" lang="es">Español</a></div>
+<header class="top">
+  <a class="logo" href="./" aria-label="Almond Tree Café, home">
+    <svg class="logo-leaf" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c7 5 9 12 6 18-2 4-6 7-6 7s-4-3-6-7C7 15 9 8 16 3z" fill="#A9472A"/><path d="M16 9v18" stroke="#F6EFE3" stroke-width="1.6"/></svg>
+    Almond Tree Café
+  </a>
+  <p class="table-pill" id="table-pill" hidden></p>
+</header>
+
+<main>
+<section class="intro">
+  <div class="intro-text">
+    <p class="eyebrow">South Congress · Austin, TX</p>
+    <h1>Order from your table or for pickup, <em>no line</em>.</h1>
+    <p>Breakfast on sourdough from a neighborhood bakery, with coffee roasted here in Austin. We’re two blocks off South Congress and open every day.</p>
+    <p class="hours"><span>Mon–Fri 8 AM–4 PM</span><span>Sat–Sun 9 AM–3 PM</span></p>
+    <a class="btn btn-go" href="#menu">See the menu and order <span aria-hidden="true">↓</span></a>
+  </div>
+  <figure class="intro-fig">
+    <img class="intro-img" src="../img/hero-800.webp" srcset="../img/hero-400.webp 400w, ../img/hero-800.webp 800w, ../img/hero-1600.webp 1600w" sizes="(min-width: 900px) 50vw, 100vw" width="1600" height="900" alt="Tomato toast with olive oil and a latte in a glass on a marble table" fetchpriority="high">
+    <figcaption class="badge" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="bc" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs><text><textPath href="#bc">sourdough · roasted in Austin · </textPath></text></svg><span>Since<br>2017</span></figcaption>
+  </figure>
+</section>
+
+<section id="menu" class="menu" aria-labelledby="menu-title">
+  <div class="menu-head">
+    <h2 id="menu-title">Menu</h2>
+    <nav class="cats" id="cats" aria-label="Menu categories"></nav>
+    <div class="filters">
+      <div class="chips" role="group" aria-label="Dietary preferences">
+        <button type="button" class="chip" aria-pressed="false" data-diet="veg">Vegetarian</button>
+        <button type="button" class="chip" aria-pressed="false" data-diet="vegan">Vegan</button>
+        <button type="button" class="chip" aria-pressed="false" data-diet="sg">Gluten-free</button>
+      </div>
+      <details class="allergen-filter">
+        <summary>Hide items with… <span id="alg-count"></span></summary>
+        <div class="alg-grid" id="alg-grid"></div>
+      </details>
+    </div>
+    <p class="result" id="result" aria-live="polite"></p>
+  </div>
+  <div id="menu-list"></div>
+  <p class="legend-note">Allergens follow the FDA’s nine major food allergens. If you have a severe allergy, please tell your server: our kitchen shares prep surfaces.</p>
+</section>
+
+<section class="qr-band">
+  <div class="qr-inner">
+    <img src="img/qr-table-7.svg" width="160" height="160" alt="Sample QR code that opens the menu at table 7">
+    <div>
+      <h2>A QR code on every table</h2>
+      <p>Guests scan, browse the menu on their own phone and order without waiting. Each order comes in with its table number.</p>
+      <div class="qr-actions"><a class="btn btn-line" href="qr.html">See the printable QR cards</a><a class="btn btn-line" href="panel/">Open the café dashboard</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="order-bar" id="order-bar" hidden>
+  <button type="button" class="btn btn-block" id="open-order"><span id="order-count"></span><span id="order-total"></span></button>
+</div>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-title">
+  <form method="dialog" class="sheet-inner" id="order-form" novalidate>
+    <div class="sheet-head">
+      <h2 id="sheet-title">Your order</h2>
+      <button class="icon-btn" value="cancel" aria-label="Close" formnovalidate>
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+    </div>
+    <ul class="lines" id="lines"></ul>
+    <fieldset class="mode">
+      <legend>Dine in or pickup?</legend>
+      <label><input type="radio" name="modo" value="mesa" checked> Dine in</label>
+      <label><input type="radio" name="modo" value="llevar"> Pickup</label>
+    </fieldset>
+    <div class="field" id="f-mesa">
+      <label for="mesa">Table number</label>
+      <input id="mesa" inputmode="numeric" maxlength="2" pattern="[0-9]*">
+      <p class="error" id="err-mesa" hidden>Enter your table number (1 to 20).</p>
+    </div>
+    <div class="field" id="f-nombre" hidden>
+      <label for="nombre">Name for pickup</label>
+      <input id="nombre" maxlength="40" autocomplete="given-name">
+      <p class="error" id="err-nombre" hidden>Enter a name so we can call you when it’s ready.</p>
+    </div>
+    <div class="field">
+      <label for="nota">Note for the kitchen <span class="opt">(optional)</span></label>
+      <input id="nota" maxlength="120" placeholder="Oat milk, no sugar…">
+    </div>
+    <p class="total-line"><span>Total</span><strong id="sheet-total"></strong></p>
+    <button class="btn btn-block" type="button" id="send">Send order via WhatsApp</button>
+    <p class="fine">Demo: WhatsApp opens with your order typed out so you can pick who gets it. On a live site it goes straight to the café’s number.</p>
+  </form>
+</dialog>
+
+<footer class="foot">
+  <p><strong>Almond Tree Café</strong> · 123 Example St, Austin, TX 78704 (fictional address)</p>
+  <p><a href="panel/">Café dashboard (demo)</a> · <a href="privacy.html">Privacy</a> · Site by <a href="https://jormanj2b.github.io/">Jorman Bravo · Web design</a></p>
+</footer>
+<script src="menu.js" defer></script>
+<script src="store.js" defer></script>
+<script src="app.js" defer></script>
+<script src="../reveal.js" defer></script>
+<script data-goatcounter="https://jormanj2b.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
